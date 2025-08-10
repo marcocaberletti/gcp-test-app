@@ -2,9 +2,7 @@ name: Build and Push to Artifact Registry
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+    branches: ["master"]
 
 env:
   PROJECT_ID: oidc-project-1273
