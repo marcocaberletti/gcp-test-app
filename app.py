@@ -17,6 +17,12 @@ from __future__ import annotations
 import datetime
 import logging
 import os
+from dotenv import load_dotenv
+from pathlib import Path
+
+dotenv_path = Path("/secrets/.env")
+load_dotenv(dotenv_path=dotenv_path)
+
 
 from flask import Flask, render_template, request, Response
 
@@ -36,6 +42,7 @@ def init_connection_pool() -> sqlalchemy.engine.base.Engine:
     """Sets up connection pool for the app."""
     # use a TCP socket when INSTANCE_HOST (e.g. 127.0.0.1) is defined
     if os.environ.get("INSTANCE_HOST"):
+        logger.info("Connecting to DB with TCP socket...")
         return connect_tcp_socket()
 
     # use a Unix socket when INSTANCE_UNIX_SOCKET (e.g. /cloudsql/project:region:instance) is defined
@@ -192,4 +199,4 @@ def save_vote(db: sqlalchemy.engine.base.Engine, team: str) -> Response:
 
 if __name__ == "__main__":
     print("Start...")
-    app.run(host="0.0.0.0", port="8888", debug=True)
+    app.run(host="0.0.0.0", port="8000", debug=True)

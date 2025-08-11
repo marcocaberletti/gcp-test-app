@@ -3,6 +3,8 @@ name: Build and Push to Artifact Registry
 on:
   push:
     branches: ["master"]
+  workflow_dispatch:
+
 
 env:
   PROJECT_ID: oidc-project-1273

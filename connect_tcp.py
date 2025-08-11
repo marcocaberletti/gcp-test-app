@@ -18,8 +18,10 @@
 # [START cloud_sql_postgres_sqlalchemy_connect_tcp_sslcerts]
 import os
 import ssl
+import logging
 
 import sqlalchemy
+logger = logging.getLogger()
 
 
 def connect_tcp_socket() -> sqlalchemy.engine.base.Engine:
@@ -35,10 +37,10 @@ def connect_tcp_socket() -> sqlalchemy.engine.base.Engine:
     db_pass = os.environ["DB_PASS"]  # e.g. 'my-db-password'
     db_name = os.environ["DB_NAME"]  # e.g. 'my-database'
     db_port = os.environ["DB_PORT"]  # e.g. 5432
-    print(f"db_user: {db_user}")
-    print(f"db_pass: {db_pass}")
-    print(f"db_name: {db_name}")
-    print(f"db_port: {db_port}")
+    logger.info(f"db_user: {db_user}")
+    logger.info(f"db_pass: {db_pass}")
+    logger.info(f"db_name: {db_name}")
+    logger.info(f"db_port: {db_port}")
 
     # [END cloud_sql_postgres_sqlalchemy_connect_tcp]
     connect_args = {}
