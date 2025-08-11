@@ -37,6 +37,9 @@ app = Flask(__name__)
 
 logger = logging.getLogger()
 
+logging.basicConfig()
+logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
+
 
 def init_connection_pool() -> sqlalchemy.engine.base.Engine:
     """Sets up connection pool for the app."""
