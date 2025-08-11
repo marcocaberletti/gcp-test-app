@@ -49,3 +49,9 @@ jobs:
       - name: Push image
         run: |-
           docker push ${{ env.GAR_LOCATION }}/vote:$IMAGE_TAG
+
+      - name: Deploy
+        run: |-
+          gcloud run deploy vote-service \
+            --image=${{ env.GAR_LOCATION }}/vote:$IMAGE_TAG \
+            --region ${{ env.REGION }}
